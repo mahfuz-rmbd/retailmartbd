@@ -141,25 +141,25 @@
     <div class="order-form-title">অর্ডার করতে নিচের ফর্মটি পূরণ করুন</div>
     <div class="order-form-wrapper">
       <div class="order-form-gf">
-        <form id="orderForm" autocomplete="off">
-          <label>আপনার নাম *</label>
-          <input type="text" name="entry.1130130903" id="customerName" required placeholder="আপনার নাম"><br>
-          <label>মোবাইল নাম্বার *</label>
-          <input type="text" name="entry.1861466009" id="customerMobile" required placeholder="মোবাইল নাম্বার"><br>
-          <label>ঠিকানা *</label>
-          <input type="text" name="entry.518810283" id="customerAddress" required placeholder="ঠিকানা"><br>
-          <label>সোয়েটার ডিজাইন সিলেক্ট করুন *</label><br>
-          <input type="radio" name="entry.139355130" value="H-361" id="sw361" required> H-361<br>
-          <input type="radio" name="entry.139355130" value="H-362" id="sw362"> H-362<br>
-          <input type="radio" name="entry.139355130" value="H-364" id="sw364"> H-364<br>
-          <input type="radio" name="entry.139355130" value="H-365" id="sw365"> H-365<br>
-          <input type="radio" name="entry.139355130" value="H-366" id="sw366"> H-366<br>
-          <label>পরিমাণ *</label>
-          <input type="number" name="entry.1969685486" id="quantity" min="1" value="1" required placeholder="পরিমাণ"><br>
-          <label>পেমেন্ট অপশন</label><br>
-          <input type="checkbox" name="entry.1168856709" value="ক্যাশ অন ডেলিভারি" checked> ক্যাশ অন ডেলিভারি<br>
-          <button type="submit">অর্ডার প্লেস করুন</button>
-        </form>
+          <form action="https://docs.google.com/forms/d/e/1FAIpQLSd8ItrUwsVQnrdll8507-BGupUhevveqENy0imNUrlgoTTf2w/formResponse" method="POST" target="_blank" id="orderForm">
+            <label>আপনার নাম *</label>
+            <input type="text" name="entry.1130130903" required placeholder="আপনার নাম"><br>
+            <label>মোবাইল নাম্বার *</label>
+            <input type="text" name="entry.1861466009" required placeholder="মোবাইল নাম্বার"><br>
+            <label>ঠিকানা *</label>
+            <input type="text" name="entry.518810283" required placeholder="ঠিকানা"><br>
+            <label>সোয়েটার ডিজাইন সিলেক্ট করুন *</label><br>
+            <input type="radio" name="entry.139355130" value="H-361" required> H-361<br>
+            <input type="radio" name="entry.139355130" value="H-362"> H-362<br>
+            <input type="radio" name="entry.139355130" value="H-364"> H-364<br>
+            <input type="radio" name="entry.139355130" value="H-365"> H-365<br>
+            <input type="radio" name="entry.139355130" value="H-366"> H-366<br>
+            <label>পরিমাণ *</label>
+            <input type="number" name="entry.1969685486" min="1" value="1" required placeholder="পরিমাণ"><br>
+            <label>পেমেন্ট অপশন</label><br>
+            <input type="checkbox" name="entry.1168856709" value="ক্যাশ অন ডেলিভারি" checked> ক্যাশ অন ডেলিভারি<br>
+            <button type="submit">অর্ডার প্লেস করুন</button>
+          </form>
         <div id="orderSuccess" style="display:none;">
           <span>আপনার অর্ডার কনফার্ম হয়েছে! ধন্যবাদ।</span>
         </div>
