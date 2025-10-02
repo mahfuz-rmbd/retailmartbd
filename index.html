@@ -8,17 +8,37 @@
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Hind Siliguri', Arial, sans-serif; background: #f8f8f8; color: #222; margin: 0; }
-    .main-section, .order-form-section {
-      background: #fff; margin: 20px auto; padding: 30px 15px; border-radius: 10px; max-width: 500px; box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-    }
-    .header { text-align: center; color: #12ad27; font-size: 2.2rem; font-weight: 700; margin: 30px 0 10px 0;}
-    .sub-header { text-align: center; color: #12ad27; font-size: 1.3rem; margin-bottom: 5px; font-weight: 500;}
+    .container { background: #fff; margin: 24px auto; padding: 30px 18px; border-radius: 12px; max-width: 700px; box-shadow: 0 2px 10px rgba(0,0,0,0.04);}
+    .header { text-align: center; color: #12ad27; font-size: 2.2rem; font-weight: 700; margin: 0 0 10px 0;}
+    .headline { text-align: center; color: #12ad27; font-size: 1.6rem; margin-bottom: 9px; font-weight: 700;}
+    .sub-header { text-align: center; color: #12ad27; font-size: 1.1rem; margin-bottom: 12px; font-weight: 500;}
+    .product-img { display: block; margin: 18px auto 12px auto; max-width: 340px; border: 3px solid #12ad27; border-radius: 8px;}
+    .countdown { display: flex; justify-content: center; gap: 18px; margin: 18px 0;}
+    .countdown-block { background: #12ad27; color: #fff; padding: 10px 18px; border-radius: 8px; text-align: center; font-size: 1.2rem; min-width: 65px; font-weight: bold;}
+    .price-section { text-align: center; margin-bottom: 12px;}
+    .old-price { color: #e60000; text-decoration: line-through; font-size: 1.2rem; margin-right: 10px;}
+    .new-price { color: #12ad27; font-weight: 700; font-size: 1.4rem;}
     .order-btn { background: #e60000; color: #fff; padding: 13px 32px; border: none; border-radius: 7px; font-size: 1.1rem; font-weight: 600; cursor: pointer; margin: 16px auto 8px auto; display: block;}
     .order-btn:hover { background: #c40000;}
-    .order-form-section { margin-top: 36px; background: #f9fff9; border: 2px solid #12ad27; border-radius: 14px; max-width: 500px;}
+    .social-links { text-align: center; margin: 16px 0 0 0;}
+    .social-links a { display: inline-block; margin: 0 7px; color: #fff; background: #12ad27; border-radius: 50%; width: 44px; height: 44px; line-height: 44px; text-align: center; font-size: 1.3em;}
+    .social-links a.facebook { background: #1877f3; }
+    .social-links a.whatsapp { background: #25d366; }
+    .section-title { background: #12ad27; color: #fff; padding: 11px 0 8px 0; border-radius: 8px 8px 0 0; font-size: 1.14rem; text-align: center; font-weight: 700; margin: 40px 0 0 0;}
+    ul.checklist { list-style: none; padding: 0 0 0 10px; margin: 15px 0 0 0;}
+    ul.checklist li { padding: 6px 0 6px 28px; position: relative; font-size: 1rem;}
+    ul.checklist li:before { content: "✔"; color: #12ad27; font-weight: bold; position: absolute; left: 0; top: 3px; font-size: 1.2em;}
+    .green-bar { background: #12ad27; color: #fff; padding: 10px 0; font-weight: bold; text-align: center; border-radius: 4px; margin: 25px 0 12px 0; font-size: 1.1rem;}
+    .order-form-section { margin: 36px auto 0 auto; background: #f9fff9; border: 2px solid #12ad27; border-radius: 14px; max-width: 700px;}
     .order-form-title { color: #12ad27; font-size: 1.3rem; text-align: center; font-weight: 700; margin-bottom: 10px; margin-top: 0;}
-    .order-form-gf { padding: 5px 0;}
+    .order-form-gf { padding: 0 0 16px 0;}
     .footer { text-align: center; padding: 22px 0 9px 0; color: #555; font-size: 0.98rem; margin-top: 38px;}
+    .contact-bar-green { background: #12ad27; color: #fff; font-size: 1.16rem; text-align: center; border-radius: 0 0 10px 10px; padding: 16px; font-weight: bold;}
+    @media (max-width: 800px) {
+      .container, .order-form-section { padding: 10px 2vw; margin: 10px 1vw; max-width: 99vw;}
+      .order-form-gf iframe { min-height: 900px;}
+      .headline { font-size: 1.2rem;}
+    }
     .order-form-gf iframe {
       background: #fff;
       border-radius: 8px;
@@ -26,28 +46,96 @@
       width: 100%;
       min-height: 750px;
     }
-    @media (max-width: 600px) {
-      .main-section, .order-form-section { padding: 10px 2vw; margin: 10px 1vw; max-width: 99vw;}
-      .order-form-gf iframe { min-height: 900px;}
-    }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <div class="main-section">
+  <!-- Hero/Main Section -->
+  <div class="container">
     <div class="header">Retail Mart BD</div>
-    <div class="sub-header">নিচের ফর্মটি পূরণ করে অর্ডার নিশ্চিত করুন।</div>
+    <div class="headline">নতুন ডিজাইনের উষ্ণ সোয়েটার কালেকশন</div>
+    <div class="sub-header">ফ্রেশ ও মানসম্মত সোয়েটার কিনুন সরাসরি আমাদের কাছ থেকে</div>
+    <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Sweater Product">
+    <div class="countdown" id="countdown">
+      <div class="countdown-block"><span id="cd-days">06</span><br>দিন</div>
+      <div class="countdown-block"><span id="cd-hours">20</span><br>ঘণ্টা</div>
+      <div class="countdown-block"><span id="cd-minutes">44</span><br>মিনিট</div>
+      <div class="countdown-block"><span id="cd-seconds">42</span><br>সেকেন্ড</div>
+    </div>
+    <div class="price-section">
+      <span class="old-price">৳১২০০</span>
+      <span class="new-price">৳৯৫০</span>
+    </div>
     <button class="order-btn" onclick="document.getElementById('order-form-section').scrollIntoView({behavior: 'smooth'});">অর্ডার করতে চাই</button>
+    <div class="social-links">
+      <a class="whatsapp" href="https://wa.me/8801332600240" title="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a class="facebook" href="https://fb.com/RetailBDMart" title="Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    </div>
   </div>
 
+  <!-- কেন আমাদের সোয়েটার কিনবেন -->
+  <div class="container">
+    <div class="section-title">কেন আমাদের সোয়েটার কিনবেন?</div>
+    <ul class="checklist">
+      <li>উচ্চ মানের উল এবং কটন দিয়ে তৈরি, একদম নতুন কালেকশন</li>
+      <li>দীর্ঘদিন টেকসই এবং আরামদায়ক</li>
+      <li>বিভিন্ন রঙ ও ডিজাইনের অপশন</li>
+      <li>দেশব্যাপী ক্যাশ অন ডেলিভারি সুবিধা</li>
+      <li>সরাসরি গুদাম থেকে ডেলিভারি, কোনো বাড়তি চার্জ নেই</li>
+      <li>বাল্ক অর্ডারে বিশেষ ছাড়</li>
+    </ul>
+    <div class="green-bar">১ পিস মাত্র <span style="font-size:1.2em;">৳৯৫০</span></div>
+    <button class="order-btn" onclick="document.getElementById('order-form-section').scrollIntoView({behavior: 'smooth'});">এখনই অর্ডার করুন</button>
+  </div>
+
+  <!-- আমাদের থেকে কেনা সেরা কারণ -->
+  <div class="container">
+    <div class="section-title">আমাদের থেকে কেনা সেরা কারণ?</div>
+    <ul class="checklist">
+      <li>আমরা শুধুমাত্র অরিজিনাল সোয়েটার সরবরাহ করি</li>
+      <li>ঢাকার ভেতরে ২৪ ঘণ্টার মধ্যে ডেলিভারি</li>
+      <li>সারা বাংলাদেশে ফাস্ট কুরিয়ার ডেলিভারি</li>
+      <li>প্রয়োজনে WhatsApp/ফোনে অর্ডার নিশ্চিত করুন</li>
+      <li>কোনো গোপন খরচ নেই, শিপিং চার্জ অর্ডারের সময় জানিয়ে দেয়া হয়</li>
+    </ul>
+  </div>
+
+  <!-- Order Form Section -->
   <div class="order-form-section" id="order-form-section">
     <div class="order-form-title">অর্ডার করতে নিচের ফর্মটি পূরণ করুন</div>
     <div class="order-form-gf">
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd8ItrUwsVQnrdll8507-BGupUhevveqENy0imNUrlgoTTf2w/viewform?embedded=true" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" loading="lazy">Loading…</iframe>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd8ItrUwsVQnrdll8507-BGupUhevveqENy0imNUrlgoTTf2w/viewform?embedded=true"
+        allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" loading="lazy">Loading…</iframe>
     </div>
+  </div>
+
+  <!-- Contact Bar -->
+  <div class="contact-bar-green">
+    যেকোন প্রয়োজনে WhatsApp করুন <a style="color:#fff;text-decoration:underline;" href="https://wa.me/8801332600240" target="_blank">+8801332600240</a>
   </div>
 
   <div class="footer">
     Copyright © 2025 Retail BD Mart | Developed by <a href="https://fb.com/RetailBDMart" style="color:#12ad27;text-decoration:underline;" target="_blank">Retail BD Mart</a>
   </div>
+
+  <script>
+    // Countdown timer (set your end date below)
+    const targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + 6); // 6 days from now
+    function updateCountdown() {
+      const now = new Date();
+      const diff = Math.max(0, targetDate - now);
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+      document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('cd-minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('cd-seconds').textContent = String(seconds).padStart(2, '0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
 </body>
 </html>
