@@ -51,32 +51,47 @@
     .product-slider {
       position: relative;
       width: 480px;
-      height: 340px;
+      height: 360px;
       margin: 32px auto 18px auto;
       background: #f8fff9;
-      border-radius: 14px;
+      border-radius: 18px;
       box-shadow: 0 2px 12px #12ad2717;
-      overflow: hidden;
+      overflow: visible;
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: box-shadow 0.2s;
+    }
+    .product-slider .main-img-frame {
+      width: 340px;
+      height: 340px;
+      margin: 0 auto;
+      background: #fff;
+      border: 3px solid #12ad27;
+      border-radius: 16px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0.5px 13px #12ad2710;
+      z-index: 2;
     }
     .product-slider .product-img {
       display: none;
       width: 100%;
-      max-width: 480px;
+      height: 100%;
+      max-width: 320px;
       max-height: 320px;
-      object-fit: cover;
-      border: 3px solid #12ad27;
-      border-radius: 10px;
+      object-fit: contain;
+      border-radius: 14px;
       background: #fff;
-      box-shadow: 0 0.5px 8px #12ad2722;
-      transition: opacity 0.6s;
+      transition: opacity 0.5s;
       margin: 0 auto;
+      box-shadow: 0 0.5px 8px #12ad2720;
     }
     .product-slider .product-img.active {
       display: block;
-      animation: fadeIn 0.7s;
+      animation: fadeIn 0.6s;
     }
     @keyframes fadeIn {
       from { opacity: 0; }
@@ -85,49 +100,94 @@
     .slider-controls {
       position: absolute;
       width: 100%;
-      top: 47%;
-      left: 0;
+      top: 0; bottom: 0; left: 0; right: 0;
+      pointer-events: none;
+      z-index: 10;
       display: flex;
       justify-content: space-between;
-      pointer-events: none;
-      z-index: 2;
+      align-items: center;
+      height: 100%;
     }
     .slider-btn {
-      background: rgba(18,173,39,0.75);
+      background: linear-gradient(135deg, #12ad27 66%, #34df62 100%);
       border: none;
       color: #fff;
-      font-size: 2.2rem;
+      font-size: 2.1rem;
       border-radius: 50%;
-      width: 48px;
-      height: 48px;
+      width: 52px;
+      height: 52px;
       cursor: pointer;
       pointer-events: auto;
-      transition: background 0.18s, transform 0.14s;
-      box-shadow: 0 2px 13px #12ad2735;
+      transition: background 0.18s, transform 0.13s, opacity 0.2s;
+      box-shadow: 0 2px 13px #12ad2732;
       display: flex;
-      align-items: center; justify-content: center;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      position: absolute;
+      z-index: 12;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 2.5px solid #fff;
     }
-    .slider-btn:hover {
-      background: #12ad27;
-      transform: scale(1.07);
+    .slider-btn.left { left: -35px; }
+    .slider-btn.right { right: -35px; }
+    .product-slider:hover .slider-btn,
+    .product-slider:focus-within .slider-btn,
+    .product-slider:active .slider-btn,
+    .slider-btn:focus,
+    .slider-btn:active {
+      opacity: 1;
+      visibility: visible;
     }
+    .slider-btn:hover { background: #0d9321; transform: scale(1.09) translateY(-50%);}
+    .slider-btn:active { transform: scale(0.95) translateY(-50%);}
+    /* Dots on bottom, unique look */
     .slider-dots {
-      text-align: center;
-      margin-top: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 19px auto 0 auto;
+      gap: 10px;
+      width: 100%;
+      flex-wrap: wrap;
+      min-height: 30px;
+      user-select: none;
+      z-index: 1;
     }
     .slider-dot {
       display: inline-block;
-      width: 13px; height: 13px;
+      width: 17px; height: 17px;
       background: #e2ffe8;
-      border: 2px solid #12ad27;
+      border: 2.5px solid #12ad27;
       border-radius: 50%;
-      margin: 0 4px;
+      margin: 0 3.5px 0 3.5px;
       cursor: pointer;
-      transition: background 0.2s, border 0.2s;
+      box-shadow: 0 1.5px 7px #12ad2715;
+      transition: background 0.18s, border 0.2s, transform 0.13s;
+      position: relative;
     }
     .slider-dot.active {
       background: #12ad27;
-      border: 2px solid #12ad27;
+      border: 2.5px solid #14ff74;
+      box-shadow: 0 2.5px 9px #12ad2730;
+      transform: scale(1.16);
+    }
+    .slider-dot::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 6.5px; height: 6.5px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0.8;
+      transition: background 0.15s;
+    }
+    .slider-dot.active::after {
+      background: #14ff74;
     }
     .countdown {
       display: flex;
@@ -285,12 +345,14 @@
     @media (max-width: 900px) {
       .container, .order-form-section { max-width: 99vw; padding: 10px 2vw;}
       .product-slider { width: 92vw;}
+      .product-slider .main-img-frame { width: 92vw; height: auto;}
       .product-slider .product-img { max-width: 92vw;}
       .headline { font-size: 1.2rem;}
     }
     @media (max-width: 650px) {
       .container, .order-form-section { padding: 5px 0.5vw;}
       .product-slider { width: 98vw; min-width: 210px;}
+      .product-slider .main-img-frame { width: 98vw;}
       .product-slider .product-img { max-width: 98vw;}
       .countdown { gap: 7px; }
       .slider-btn { width: 36px; height: 36px; font-size: 1.2rem;}
@@ -306,11 +368,13 @@
     <div class="headline">নতুন ডিজাইনের উষ্ণ সোয়েটার কালেকশন</div>
     <div class="sub-header">ফ্রেশ ও মানসম্মত সোয়েটার কিনুন সরাসরি আমাদের কাছ থেকে</div>
     <!-- Product Images Slider -->
-    <div class="product-slider" id="productSlider">
-      <!-- Images will be injected here by JS -->
-      <div class="slider-controls">
-        <button type="button" class="slider-btn" onclick="prevSlide()">&#10094;</button>
-        <button type="button" class="slider-btn" onclick="nextSlide()">&#10095;</button>
+    <div class="product-slider" id="productSlider" tabindex="0">
+      <div class="main-img-frame" id="sliderFrame">
+        <!-- Images will be injected here by JS -->
+        <div class="slider-controls">
+          <button type="button" class="slider-btn left" onclick="prevSlide()" aria-label="আগের ছবি">&#10094;</button>
+          <button type="button" class="slider-btn right" onclick="nextSlide()" aria-label="পরের ছবি">&#10095;</button>
+        </div>
       </div>
       <div class="slider-dots" id="sliderDots"></div>
     </div>
@@ -377,38 +441,20 @@
   </div>
 
   <script>
-    // --------- Product Images Slider (Auto from assets folder, Autoplay & Dots) ---------
-    // শুধু এখানে ছবির নামগুলো assets ফোল্ডারে যেভাবে আপলোড করবে, সেভাবে দাও
+    // --------- Product Images Slider (Auto from assets folder, Autoplay & Dots, dynamic styles) ---------
+    // এখানে ছবির নাম assets/ ফোল্ডারে রাখো (যেমন 1.jpg, 2.jpg, 3.jpg...)
     const productImages = [
       "1.jpg",
       "2.jpg",
-      "3.jpg",
-      "4.jpg",
-      "5.jpg",
-      "6.jpg",
-      "7.jpg",
-      "8.jpg",
-      "9.jpg",
-      "10.jpg",
-      "11.jpg",
-      "12.jpg",
-      "13.jpg",
-      "14.jpg",
-      "15.jpg",
-      "16.jpg",
-      "17.jpg",
-      "18.jpg",
-      "19.jpg",
-      "20.jpg",
-      "21.jpg",
-      "22.jpg",
-      "23.jpg",
+      "3.jpg"
       // assets/ ফোল্ডারে যত ইচ্ছা ছবি রাখো, এখানে শুধু নাম যোগ করো
     ];
+    // Prepare DOM
     const sliderDiv = document.getElementById("productSlider");
+    const sliderFrame = document.getElementById("sliderFrame");
     const dotsDiv = document.getElementById("sliderDots");
     // Remove any existing img (if this JS runs after fallback HTML)
-    sliderDiv.querySelectorAll('.product-img').forEach(img => img.remove());
+    sliderFrame.querySelectorAll('.product-img').forEach(img => img.remove());
 
     // Add images dynamically
     productImages.forEach((imgName, i) => {
@@ -417,11 +463,11 @@
       img.alt = `Sweater ${i+1}`;
       img.className = "product-img";
       if(i===0) img.classList.add("active");
-      sliderDiv.insertBefore(img, sliderDiv.querySelector('.slider-controls'));
+      sliderFrame.insertBefore(img, sliderFrame.querySelector('.slider-controls'));
     });
 
     let currentSlide = 0;
-    const slides = sliderDiv.querySelectorAll('.product-img');
+    const slides = sliderFrame.querySelectorAll('.product-img');
     // Dots
     function renderDots() {
       if (!dotsDiv) return;
@@ -472,16 +518,29 @@
       autoplayInterval = setInterval(() => {
         currentSlide = (currentSlide + 1) % slides.length;
         showSlide(currentSlide);
-      }, 2800);
+      }, 3000);
     }
     function resetAutoplay() {
       startAutoplay();
     }
     startAutoplay();
 
+    // Touch/swipe for mobile
+    let startX = null;
+    sliderFrame.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+    });
+    sliderFrame.addEventListener('touchend', function(e) {
+      if (startX === null) return;
+      let endX = e.changedTouches[0].clientX;
+      if (endX - startX > 40) prevSlide();
+      else if (endX - startX < -40) nextSlide();
+      startX = null;
+    });
+
     // --------- Countdown ---------
     const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 5); // 5 days from now
+    targetDate.setDate(targetDate.getDate() + 4); // 4 days from now
     function updateCountdown() {
       const now = new Date();
       const diff = Math.max(0, targetDate - now);
