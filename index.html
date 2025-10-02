@@ -46,6 +46,41 @@
       .order-form-wrapper { flex-direction: column;}
       .order-summary { border-left: none; border-top: 1px solid #ddd; padding-left: 0; padding-top: 18px;}
     }
+    /* Custom for input styling */
+    .order-form-gf input[type="text"], 
+    .order-form-gf input[type="number"] {
+      width: 100%;
+      padding: 7px 8px;
+      border: 1px solid #bbb;
+      border-radius: 5px;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+    .order-form-gf label {
+      font-weight: 500;
+      margin-top: 0.5em;
+    }
+    .order-form-gf button[type="submit"] {
+      background:#e60000;
+      color:#fff;
+      padding:12px 30px;
+      border:none;
+      border-radius:6px;
+      font-weight:600;
+      font-size:1.1rem;
+      cursor:pointer;
+      margin-top:10px;
+    }
+    .order-form-gf button[type="submit"]:hover {
+      background:#c40000;
+    }
+    #orderSuccess {
+      color:green;
+      font-weight:700;
+      font-size:1.2em;
+      text-align:center;
+      margin-top:22px;
+    }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -105,29 +140,29 @@
   <div class="order-form-section" id="order-form-section">
     <div class="order-form-title">অর্ডার করতে নিচের ফর্মটি পূরণ করুন</div>
     <div class="order-form-wrapper">
-      <!-- Google Form embed (replace YOUR_FORM_ID and entry.xxxxx numbers as per your Google Form) -->
       <div class="order-form-gf">
-        <div class="order-form-gf">
-          <form action="https://docs.google.com/forms/d/e/1FAIpQLSd8ItrUwsVQnrdll8507-BGupUhevveqENy0imNUrlgoTTf2w/formResponse" method="POST" target="_blank" style="max-width:400px;margin:0 auto;background:#fff;padding:24px 18px;border-radius:12px;">
-            <label>আপনার নাম *</label>
-            <input type="text" name="entry.1130130903" required placeholder="আপনার নাম"><br><br>
-            <label>মোবাইল নাম্বার *</label>
-            <input type="text" name="entry.1861466009" required placeholder="মোবাইল নাম্বার"><br><br>
-            <label>ঠিকানা *</label>
-            <input type="text" name="entry.518810283" required placeholder="ঠিকানা"><br><br>
-            <label>সোয়েটার ডিজাইন সিলেক্ট করুন *</label><br>
-            <input type="radio" name="entry.139355130" value="H-361" required> H-361<br>
-            <input type="radio" name="entry.139355130" value="H-362"> H-362<br>
-            <input type="radio" name="entry.139355130" value="H-364"> H-364<br>
-            <input type="radio" name="entry.139355130" value="H-365"> H-365<br>
-            <input type="radio" name="entry.139355130" value="H-366"> H-366<br><br>
-            <label>পরিমাণ *</label>
-            <input type="number" name="entry.1969685486" min="1" required placeholder="পরিমাণ"><br><br>
-            <label>পেমেন্ট অপশন</label><br>
-            <input type="checkbox" name="entry.1168856709" value="ক্যাশ অন ডেলিভারি"> ক্যাশ অন ডেলিভারি<br><br>
-            <button type="submit" style="background:#e60000;color:#fff;padding:12px 30px;border:none;border-radius:6px;font-weight:600;font-size:1.1rem;">অর্ডার প্লেস করুন</button>
-          </form>
-</div>
+        <form id="orderForm" autocomplete="off">
+          <label>আপনার নাম *</label>
+          <input type="text" name="entry.1130130903" id="customerName" required placeholder="আপনার নাম"><br>
+          <label>মোবাইল নাম্বার *</label>
+          <input type="text" name="entry.1861466009" id="customerMobile" required placeholder="মোবাইল নাম্বার"><br>
+          <label>ঠিকানা *</label>
+          <input type="text" name="entry.518810283" id="customerAddress" required placeholder="ঠিকানা"><br>
+          <label>সোয়েটার ডিজাইন সিলেক্ট করুন *</label><br>
+          <input type="radio" name="entry.139355130" value="H-361" id="sw361" required> H-361<br>
+          <input type="radio" name="entry.139355130" value="H-362" id="sw362"> H-362<br>
+          <input type="radio" name="entry.139355130" value="H-364" id="sw364"> H-364<br>
+          <input type="radio" name="entry.139355130" value="H-365" id="sw365"> H-365<br>
+          <input type="radio" name="entry.139355130" value="H-366" id="sw366"> H-366<br>
+          <label>পরিমাণ *</label>
+          <input type="number" name="entry.1969685486" id="quantity" min="1" value="1" required placeholder="পরিমাণ"><br>
+          <label>পেমেন্ট অপশন</label><br>
+          <input type="checkbox" name="entry.1168856709" value="ক্যাশ অন ডেলিভারি" checked> ক্যাশ অন ডেলিভারি<br>
+          <button type="submit">অর্ডার প্লেস করুন</button>
+        </form>
+        <div id="orderSuccess" style="display:none;">
+          <span>আপনার অর্ডার কনফার্ম হয়েছে! ধন্যবাদ।</span>
+        </div>
       </div>
       <div class="order-summary">
         <div style="font-weight:600;margin-bottom:7px;">Your order</div>
@@ -138,7 +173,7 @@
             <th>Price</th>
           </tr>
           <tr>
-            <td>নতুন সোয়েটার</td>
+            <td><span id="orderDesign">নির্বাচিত হয়নি</span></td>
             <td id="orderQty">1</td>
             <td>৳৯৫০</td>
           </tr>
@@ -175,6 +210,41 @@
     function scrollToOrder() {
       document.getElementById('order-form-section').scrollIntoView({behavior: 'smooth'});
     }
+
+    // ডাইনামিক অর্ডার সামারি আপডেট
+    function updateOrderSummary() {
+      const qty = document.getElementById('quantity').value || 1;
+      let design = '';
+      document.querySelectorAll('input[name="entry.139355130"]').forEach(r=>{
+        if(r.checked) design=r.value;
+      });
+      document.getElementById('orderQty').textContent = qty;
+      document.getElementById('orderTotal').textContent = '৳' + (qty * 950);
+      document.getElementById('orderDesign').textContent = design || 'নির্বাচিত হয়নি';
+    }
+    document.getElementById('quantity').addEventListener('input', updateOrderSummary);
+    document.querySelectorAll('input[name="entry.139355130"]').forEach(r=>{
+      r.addEventListener('change', updateOrderSummary);
+    });
+    // প্রথমেই একবার রান
+    updateOrderSummary();
+
+    // ফর্ম সাবমিট AJAX দিয়ে
+    document.getElementById('orderForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      fetch("https://docs.google.com/forms/d/e/1FAIpQLSd8ItrUwsVQnrdll8507-BGupUhevveqENy0imNUrlgoTTf2w/formResponse", {
+        method: "POST",
+        mode: "no-cors",
+        body: data
+      }).then(()=>{
+        form.style.display = 'none';
+        document.getElementById('orderSuccess').style.display = 'block';
+      }).catch(()=>{
+        alert('অর্ডার সাবমিট হয়নি, আবার চেষ্টা করুন');
+      });
+    });
   </script>
 </body>
 </html>
